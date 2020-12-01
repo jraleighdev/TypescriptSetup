@@ -1,24 +1,29 @@
 {
-    "compilerOptions": {
-        "target": "ES6",
-        "module": "es2015",
-        "lib": [
-            "dom",
-            "ES6",
-            "DOM.Iterable",
-            "ScriptHost"
-        ],
-        "outDir": "./dist",
-        // "rootDir": "./src",
-        "removeComments": true,
-        "sourceMap": true,
-        "strict": true,
-        "esModuleInterop": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noImplicitReturns": true
-    },
-    "exclude": [
-        "node_modules"
-    ]
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"strict": true,
+		"noImplicitAny": false,
+		"noEmit": true,
+		"allowJs": true,
+		"jsx": "preserve",
+		"importHelpers": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"baseUrl": "./src",
+		"paths": {
+		  "~/*": ["./*"]
+		},
+		"typeRoots": [
+			"node_modules/@types",
+			"node_module/phaser/types"
+		],
+		"types": [
+			"Phaser"
+		]
+	  },
+	  "include": ["src/**/*"]
 }
