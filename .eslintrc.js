@@ -14,6 +14,7 @@ module.exports = {
 		'@typescript-eslint/ban-ts-ignore': 0,
 		'@typescript-eslint/no-namespace': 0,
 		'@typescript-eslint/member-delimiter-style': 0,
-		'@typescript-eslint/no-explicit-any': 0
+		'@typescript-eslint/no-explicit-any': 0,
+		'@typescript-eslint/strict-null-checks': 0
 	}
 }

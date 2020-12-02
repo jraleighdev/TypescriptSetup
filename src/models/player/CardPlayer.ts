@@ -2,6 +2,9 @@ import CardDraggable from "~/models/base/CardDraggable";
 import {Scene} from "phaser";
 
 export default class CardPlayer extends CardDraggable {
+
+    dead = false;
+
     constructor(public ondragend: any,
                 public scene: Scene,
                 public name: string,
@@ -23,31 +26,51 @@ export default class CardPlayer extends CardDraggable {
 
         super(ondragend, scene, name, x, y, card, image, depth, spriteCard, spriteImage, textName);
 
-        // this.textHealth.tint = 0;
-        // this.maxHealthText.tint = 0;
-        // this.add([this.textHealth, this.maxHealthText, this.armorText, this.spriteArmor]);
-        // this.health = health
+        this.textHealth.tint = 0;
+        this.maxHealthText.tint = 0;
+        this.add([this.textHealth, this.maxHealthText, this.spriteArmor, this.armorText]);
+        this.health = health
 
-        // this.setHealth(this.health);
-        // this.setArmor(this.armor);
+        this.setHealth(this.health);
+        this.setArmor(this.armor);
     }
 
-    // setHealth(newHealth: number) {
-    //     this.health = newHealth;
-    //     this.textHealth.text = this.health.toString();
-    //     this.textHealth.x = -44 - this.textHealth.width / 2;
-    // }
-    //
-    // setMaxHealth(newMaxHealth: number) {
-    //     this.maxHealth = newMaxHealth;
-    // }
-    //
-    // setArmor(newArmor: number) {
-    //     this.armor = newArmor;
-    //     this.armorText.text = this.armor.toString();
-    //     this.armorText.x = 46 - this.armorText.width / 2;
-    //     const alpha = this.armor === 0 ? 0 : 1;
-    //     this.armorText.alpha = alpha;
-    //     this.spriteArmor.alpha = alpha;
-    // }
+    setHealth(newHealth: number) {
+        this.health = newHealth;
+        this.textHealth.text = this.health.toString();
+        this.textHealth.x = -44 - this.textHealth.width / 2;
+    }
+    
+    setMaxHealth(newMaxHealth: number) {
+        this.maxHealth = newMaxHealth;
+    }
+    
+    setArmor(newArmor: number) {
+        this.armor = newArmor;
+        this.armorText.text = this.armor.toString();
+        this.armorText.x = 47 - this.armorText.width / 2;
+        const alpha = this.armor === 0 ? 0 : 1;
+        this.armorText.alpha = alpha;
+        this.spriteArmor.alpha = alpha;
+    }
+
+    attack(value: number) {
+        if (value <= this.armor) {
+            this.setArmor(this.armor - value);
+        } else {
+            this.setHealth(this.health - (value - this.armor));
+            this.setArmor(0);
+        }
+        if (this.health <= 0) {
+            this.setDead();
+        }
+    }
+
+    setDead() {
+        this.dead = true;
+        this.setHealth(0);
+        this.cardText = 'Dead';
+        this.draggable = false;
+        this.deathAnimation();
+    }
 }
