@@ -1,7 +1,7 @@
 {
-	"name": "typescript-setup",
+	"name": "tetris",
 	"version": "1.0.0",
-	"description": "typescript setup project using parcel",
+	"description": "tetris in typescript",
 	"scripts": {
 		"start": "parcel src/index.html -p 8000",
 		"build": "parcel build src/index.html",
