@@ -1,1 +1,1 @@
-Tetris built using typescript
+Typescript setup project using parcel
